@@ -32,11 +32,8 @@ public class LocationController {
     }
 
     @PostMapping("/nearby/drivers")
-    public ResponseEntity<List<DriverLocationDto>> getNearByDrivers(
-            @RequestParam double longitude,
-            @RequestParam double latitude) {
+    public ResponseEntity<List<DriverLocationDto>> getNearByDrivers(@RequestBody NearbyDriversRequestDto dto) {
 
-        NearbyDriversRequestDto dto = new NearbyDriversRequestDto(longitude, latitude);
         System.out.println("Received search point: lon=" + dto.getLongitude() + ", lat=" + dto.getLatitude());
         List<DriverLocationDto> result = locationService.getNearByDrivers(dto);
 
